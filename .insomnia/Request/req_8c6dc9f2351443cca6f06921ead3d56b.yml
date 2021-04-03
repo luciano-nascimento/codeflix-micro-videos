@@ -1,0 +1,35 @@
+_id: req_8c6dc9f2351443cca6f06921ead3d56b
+type: Request
+parentId: fld_c72b68a0e5f040fba1be1fb382236b0a
+modified: 1617493141030
+created: 1617491598580
+url: http://localhost:8000/api/genre
+name: Genre
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"name": "genre 2",
+    	"is_active": false
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    description: ""
+    id: pair_12aaf822f6a44f58b0fa2292296a3583
+  - name: Accept
+    value: application/json
+    description: ""
+    id: pair_c46491e3e5984a0595403c30a490f023
+authentication: {}
+metaSortKey: -1617480784014
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
