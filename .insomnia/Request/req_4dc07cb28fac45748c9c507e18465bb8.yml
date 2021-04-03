@@ -1,0 +1,30 @@
+_id: req_4dc07cb28fac45748c9c507e18465bb8
+type: Request
+parentId: fld_c9b4b2bec7924a60aef4558ccbe48dad
+modified: 1617486849830
+created: 1617486716642
+url: http://localhost:8000/api/categories/1055
+name: categories
+description: ""
+method: DELETE
+body:
+  mimeType: application/json
+  text: ""
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_dc41c801901745f7a7812dcd3be1289d
+  - name: Accept
+    value: application/json
+    description: ""
+    id: pair_fdb007138a5f44f8b3d781924b9da187
+authentication: {}
+metaSortKey: -1617405180784
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
