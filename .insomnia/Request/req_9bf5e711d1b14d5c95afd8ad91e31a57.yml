@@ -1,0 +1,35 @@
+_id: req_9bf5e711d1b14d5c95afd8ad91e31a57
+type: Request
+parentId: fld_c9b4b2bec7924a60aef4558ccbe48dad
+modified: 1617485963086
+created: 1617485298362
+url: http://localhost:8000/api/categories
+name: categories
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"name": "category 2",
+    	"description": "descrição",
+    	"is_active": false
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_dc41c801901745f7a7812dcd3be1289d
+  - name: Accept
+    value: application/json
+    description: ""
+    id: pair_fdb007138a5f44f8b3d781924b9da187
+authentication: {}
+metaSortKey: -1617405180884
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
