@@ -1,10 +1,10 @@
 _id: req_24e9d2883c1648ce8685057d96422203
 type: Request
 parentId: fld_c72b68a0e5f040fba1be1fb382236b0a
-modified: 1617493058625
+modified: 1617574906242
 created: 1617491591421
-url: http://localhost:8000/api/genre/079f69cf-34f2-4234-955c-62d952c0fbae
-name: Genre
+url: http://localhost:8000/api/genres/079f69cf-34f2-4234-955c-62d952c0fbae
+name: Genres
 description: ""
 method: DELETE
 body: {}

@@ -1,10 +1,10 @@
 _id: req_cd4cbeaf506845a1b22d75216485c40d
 type: Request
 parentId: fld_c72b68a0e5f040fba1be1fb382236b0a
-modified: 1617493171081
+modified: 1617574900530
 created: 1617491594891
-url: http://localhost:8000/api/genre
-name: Genre
+url: http://localhost:8000/api/genres
+name: Genres
 description: ""
 method: PUT
 body:
