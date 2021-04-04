@@ -1,25 +1,25 @@
-_id: req_2844b4665cf743aa8ff9aed2b6ea935d
+_id: req_cea61b50da2944cc8ad8edf63369b0ed
 type: Request
-parentId: fld_c9b4b2bec7924a60aef4558ccbe48dad
-modified: 1617493050204
-created: 1617405180934
-url: http://localhost:8000/api/categories
-name: categories
+parentId: fld_c72b68a0e5f040fba1be1fb382236b0a
+modified: 1617493117510
+created: 1617491584454
+url: http://localhost:8000/api/genre
+name: Genre
 description: ""
 method: GET
 body: {}
 parameters: []
 headers:
-  - name: Accept
-    value: application/json
-    description: ""
-    id: pair_dc89000eccf3481a939119d6772d1833
   - name: Content-Type
     value: application/json
     description: ""
-    id: pair_e3aa4841bce94ae6973a3dc30e54dbd5
+    id: pair_1b0a07e1901245468bac728c1267af2d
+  - name: Accept
+    value: application/json
+    description: ""
+    id: pair_f584e726c8dd45ee815a6fab23d47c86
 authentication: {}
-metaSortKey: -1617405180934
+metaSortKey: -1617491584454
 isPrivate: false
 settingStoreCookies: true
 settingSendCookies: true

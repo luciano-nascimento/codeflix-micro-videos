@@ -1,0 +1,29 @@
+_id: req_24e9d2883c1648ce8685057d96422203
+type: Request
+parentId: fld_c72b68a0e5f040fba1be1fb382236b0a
+modified: 1617493058625
+created: 1617491591421
+url: http://localhost:8000/api/genre/079f69cf-34f2-4234-955c-62d952c0fbae
+name: Genre
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    description: ""
+    id: pair_27315ba4c9824d95b3413251dea1f0a6
+  - name: Accept
+    value: application/json
+    description: ""
+    id: pair_7245fdc72715481084184677c0ed15a6
+authentication: {}
+metaSortKey: -1617448382694
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
