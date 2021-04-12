@@ -46,7 +46,8 @@ services:
             - ./.docker/mysql:/docker-entrypoint-initdb.d
         environment:
             - MYSQL_ROOT_PASSWORD=root
-            - MYSQL_USER=root
+            - MYSQL_USER=codeflix
+            - MYSQL_PASSWORD=codeflix
         networks:
             - app-network
 

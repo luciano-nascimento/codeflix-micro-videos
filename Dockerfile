@@ -12,7 +12,8 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN usermod -u 1000 www-data
+#normally -u 1000
+RUN usermod -u 224413555 www-data
 
 WORKDIR /var/www
 

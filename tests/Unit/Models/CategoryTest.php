@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Models;
 
 use App\Models\Category;
 //use PHPUnit\Framework\TestCase;
@@ -10,18 +10,22 @@ use Tests\TestCase;
 class CategoryTest extends TestCase
 {
 
-    use DatabaseMigrations;
+    private $category;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->category = new Category();
+    }
 
     public function testFillableAttribute()
     {
         $fillable = ['name', 'description', 'is_active'];
-        $category = new Category();
-        $this->assertEquals($fillable, $category->getFillable());
+        $this->assertEquals($fillable, $this->category->getFillable());
     }
 
     public function testIfUseTraits()
     {
-        \App\Models\Genre::create(['name' => 'test']);
         $traits = [
             \Illuminate\Database\Eloquent\SoftDeletes::class, \App\Models\Traits\Uuid::class
         ];
@@ -32,24 +36,21 @@ class CategoryTest extends TestCase
     public function testDatesAttribute()
     {
         $dates = ['deleted_at', 'created_at', 'updated_at'];
-        $category = new Category();
         foreach ($dates as $date) {
-            $this->assertContains($date, $category->getDates());
+            $this->assertContains($date, $this->category->getDates());
         }
-        $this->assertCount(count($dates), $category->getDates());
+        $this->assertCount(count($dates), $this->category->getDates());
     }
 
     public function testCastsAttribute()
     {
-        $casts = ['id' => 'string'];
-        $category = new Category();
-        $this->assertEquals($casts, $category->getCasts());
+        $casts = ['id' => 'string', 'is_active' => 'boolean'];
+        $this->assertEquals($casts, $this->category->getCasts());
     }
 
     public function testIncrementing()
     {
-        $category = new Category();
-        $this->assertFalse($category->incrementing);
+        $this->assertFalse($this->category->incrementing);
     }
 
 }
