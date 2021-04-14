@@ -3,23 +3,23 @@
 namespace Tests\Unit\Models;
 
 use Tests\TestCase;
-use App\Models\Category;
+use App\Models\Genre;
 
-class CategoryTest extends TestCase
+class GenreTest extends TestCase
 {
-
-    private $category;
+    
+    private $genre;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->category = new Category();
+        $this->genre = new Genre();
     }
 
     public function testFillableAttribute()
     {
-        $fillable = ['name', 'description', 'is_active'];
-        $this->assertEquals($fillable, $this->category->getFillable());
+        $fillable = ['name', 'is_active'];
+        $this->assertEquals($fillable, $this->genre->getFillable());
     }
 
     public function testIfUseTraits()
@@ -27,28 +27,27 @@ class CategoryTest extends TestCase
         $traits = [
             \Illuminate\Database\Eloquent\SoftDeletes::class, \App\Models\Traits\Uuid::class
         ];
-        $categoryTraits = array_keys(class_uses(Category::class));
-        $this->assertEquals($traits, $categoryTraits);
+        $genreTraits = array_keys(class_uses(Genre::class));
+        $this->assertEquals($traits, $genreTraits);
     }
 
     public function testDatesAttribute()
     {
         $dates = ['deleted_at', 'created_at', 'updated_at'];
         foreach ($dates as $date) {
-            $this->assertContains($date, $this->category->getDates());
+            $this->assertContains($date, $this->genre->getDates());
         }
-        $this->assertCount(count($dates), $this->category->getDates());
+        $this->assertCount(count($dates), $this->genre->getDates());
     }
 
     public function testCastsAttribute()
     {
         $casts = ['id' => 'string', 'is_active' => 'boolean'];
-        $this->assertEquals($casts, $this->category->getCasts());
+        $this->assertEquals($casts, $this->genre->getCasts());
     }
 
     public function testIncrementing()
     {
-        $this->assertFalse($this->category->incrementing);
+        $this->assertFalse($this->genre->incrementing);
     }
-
 }

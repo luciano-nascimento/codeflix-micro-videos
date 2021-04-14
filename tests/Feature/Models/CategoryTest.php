@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use \Ramsey\Uuid\Uuid as RamseyUuid;
 
 class CategoryTest extends TestCase
 {
@@ -27,10 +28,74 @@ class CategoryTest extends TestCase
                 'is_active',
                 'deleted_at', 
                 'created_at', 
-                'updated_at', 
-                
+                'updated_at',   
             ],
             $categoryKey
         );
+    }
+
+    public function testCreate()
+    {
+        $category = Category::create([
+            'name' => 'test1'
+        ]);
+        //to get is_active status created by db
+        $category->refresh();
+        $this->assertEquals('test1', $category->name);
+        $this->assertNull($category->description);
+        $this->assertTrue((bool)$category->is_active);
+        $this->assertTrue(RamseyUuid::isValid($category->id));
+
+        $category = Category::create([
+            'name' => 'test1',
+            'description' => null
+        ]);
+        $this->assertNull($category->description);
+        
+        $category = Category::create([
+            'name' => 'test1',
+            'description' => 'test_description'
+        ]);
+        $this->assertEquals('test_description', $category->description);
+
+        $category = Category::create([
+            'name' => 'test1',
+            'is_active' => false
+        ]);
+        $this->assertFalse($category->is_active);
+
+        $category = Category::create([
+            'name' => 'test1',
+            'is_active' => true
+        ]);
+        $this->assertTrue($category->is_active);
+    }
+
+    public function testUpdate()
+    {
+        $category = factory(Category::class)->create([
+            'description' => 'test_description'
+        ])->first();
+
+        $data = [
+            'name' => 'test_name_updated',
+            'description' => 'test_description_update',
+            'is_active' => true
+        ];
+
+        $category->update($data);
+
+        foreach($data as $key => $value){
+            $this->assertEquals($value, $category->{$key});
+        }
+    }
+
+    public function testDelete() 
+    {
+        $category = factory(Category::class)->create([
+            'name' => 'terror'
+        ])->first();
+        Category::destroy($category->id);
+        $this->assertEquals(count(Category::all()), 0);
     }
 }
