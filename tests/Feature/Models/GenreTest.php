@@ -4,8 +4,6 @@ namespace Tests\Feature\Models;
 
 use App\Models\Genre;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use \Ramsey\Uuid\Uuid as RamseyUuid;
 
@@ -43,6 +41,7 @@ class GenreTest extends TestCase
         $this->assertEquals('test1', $genre->name);
         $this->assertNull($genre->description);
         $this->assertTrue((bool)$genre->is_active);
+        $this->assertEquals(36, strlen($genre->id));
         $this->assertTrue(RamseyUuid::isValid($genre->id));
         
         $genre = Genre::create([
@@ -60,7 +59,7 @@ class GenreTest extends TestCase
 
     public function testUpdate()
     {
-        $genre = factory(Genre::class)->create([
+        $genre = factory(Genre::class,1)->create([
             'name' => 'terror'
         ])->first();
 
@@ -80,7 +79,11 @@ class GenreTest extends TestCase
         $genre = factory(Genre::class)->create([
             'name' => 'terror'
         ])->first();
-        Genre::destroy($genre->id);
-        $this->assertEquals(count(Genre::all()), 0);
+        
+        $genre->delete();
+        $this->assertNull(Genre::find($genre->id));
+        
+        $genre->restore();
+        $this->assertNotNull(Genre::find($genre->id));
     }
 }

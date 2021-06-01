@@ -4,8 +4,6 @@ namespace Tests\Feature\Models;
 
 use App\Models\Category;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use \Ramsey\Uuid\Uuid as RamseyUuid;
 
@@ -44,6 +42,7 @@ class CategoryTest extends TestCase
         $this->assertEquals('test1', $category->name);
         $this->assertNull($category->description);
         $this->assertTrue((bool)$category->is_active);
+        $this->assertEquals(36, strlen($category->id));
         $this->assertTrue(RamseyUuid::isValid($category->id));
 
         $category = Category::create([
@@ -73,7 +72,7 @@ class CategoryTest extends TestCase
 
     public function testUpdate()
     {
-        $category = factory(Category::class)->create([
+        $category = factory(Category::class,1)->create([
             'description' => 'test_description'
         ])->first();
 
@@ -95,7 +94,11 @@ class CategoryTest extends TestCase
         $category = factory(Category::class)->create([
             'name' => 'terror'
         ])->first();
-        Category::destroy($category->id);
-        $this->assertEquals(count(Category::all()), 0);
+        
+        $category->delete();
+        $this->assertNull(Category::find($category->id));
+        
+        $category->restore();
+        $this->assertNotNull(Category::find($category->id));
     }
 }
