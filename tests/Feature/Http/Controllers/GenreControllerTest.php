@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Http;
 
+use App\Models\Category;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\TestResponse;
 use Tests\TestCase;
@@ -131,16 +132,10 @@ class GenreControllerTest extends TestCase
     }
 
     public function testDelete() {
-
-        $response = $this->json('POST', route('genres.store'), [
-            'name' => 'test'
-        ]);
-        $id = $response->json('id');
-        $genre = Genre::find($id);
-        $response = $this->json('DELETE', route('genres.destroy', ['genre' => $id]));
-        
-        $response->assertStatus(204)
-            ->assertNoContent();
-        $this->assertDatabaseMissing('genres', ['deleted_at' => null, 'id' => $id]);    
+        $genre = factory(Genre::class)->create();
+        $response = $this->json('DELETE', route('genres.destroy', ['genre' => $genre->id]));
+        $response->assertStatus(204);
+        $this->assertNull(Genre::find($genre->id));
+        $this->assertNotNull(Genre::withTrashed()->find($genre->id));
     }
 }
