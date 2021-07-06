@@ -1,15 +1,16 @@
 <?php
 
-namespace Tests\Feature\Http\Controllers\Api;
+namespace Tests\Feature\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\TestResponse;
+use Tests\Traits\TestValidations;
 use Tests\TestCase;
 
 class CategoryControllerTest extends TestCase
 {
-    use DatabaseMigrations;
+    use DatabaseMigrations, TestValidations;
 
     public function testIndex()
     {
@@ -58,31 +59,22 @@ class CategoryControllerTest extends TestCase
     }
 
     protected function assertInvalidationRequired(TestResponse $response) {
-        $response
-            ->assertStatus(422)
-            ->assertJsonValidationErrors(['name'])
-            ->assertJsonMissingValidationErrors(['is_active'])
-            ->assertJsonFragment([
-                trans('validation.required', ['attribute' => 'name'])
-            ]);
+        $this->assertInvalidationFields(
+            $response, ['name'], 'required'
+        );
+        $response->assertJsonMissingValidationErrors(['is_active']);
     }
 
     protected function assertInvalidationMax(TestResponse $response) {
-        $response
-            ->assertStatus(422)
-            ->assertJsonValidationErrors(['name'])
-            ->assertJsonFragment([
-                trans('validation.max.string', ['attribute' => 'name', 'max' => '255'])
-            ]);
+        $this->assertInvalidationFields(
+            $response, ['name'], 'max.string', ['max' => 255]
+        );
     }
 
     protected function assertInvalidationBoolean(TestResponse $response) {
-        $response
-            ->assertStatus(422)
-            ->assertJsonValidationErrors(['is_active'])
-            ->assertJsonFragment([
-                trans('validation.boolean', ['attribute' => 'is active'])
-            ]);
+        $this->assertInvalidationFields(
+            $response, ['is_active'], 'boolean'
+        );
     }
 
     public function testStore() {

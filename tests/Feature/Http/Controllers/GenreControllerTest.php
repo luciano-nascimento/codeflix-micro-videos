@@ -1,8 +1,7 @@
 <?php
 
-namespace Tests\Feature\Http;
+namespace Tests\Feature\Http\Controllers;
 
-use App\Models\Category;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\TestResponse;
 use Tests\TestCase;
